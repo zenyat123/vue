@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<meta charset = "utf-8">
+	<title>Vue</title>
+
+	<link href = "css/bootstrap.css" rel = "stylesheet">
+
+	<script src = "js/vue.js"></script>
+
+</head>
+
+<body>
+
+	<div class = "container" id = "app">
+
+		<h1 class = "mt-5 mb-5">Filtros</h1>
+
+		<h5 class = "mt-5 mb-5">Filtro para los select</h5>
+
+		<div class = "row">
+			
+			<div class = "col-md-2">
+				
+				<select class = "form-control">
+			
+					<option v-for = "mes in meses" v-if = "filtro(mes)" v-bind:value = "mes">{{ mes }}</option>
+
+				</select>
+
+			</div>
+
+			<div class = "col-md-2">
+				
+				<input type = "text" v-model = "filtraMes" class = "form-control">
+
+			</div>
+
+		</div>
+
+		<h5 class = "mt-5 mb-5">Filtro para arrays de objetos</h5>
+
+		<div class = "row">
+			
+			<div class = "col-md-3">
+
+				<div class = "form-group">
+					
+					<label>Empresa</label>
+
+					<input type = "text" v-model = "filtroEmpresa" class = "form-control">
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<label>Experiencia</label>
+
+		<div class = "row">
+
+			<div class = "col-md-3">
+				
+				<div class = "form-group">
+
+					<input type = "text" v-model = "filtroExperiencia" class = "form-control">
+
+				</div>
+
+			</div>
+
+			<div class = "col-md-3">
+				
+				<div class = "form-group">
+					
+					<select v-model = "seleccionExperiencia" class = "form-control">
+						
+						<option value = "<">&#60;</option>
+						<option value = ">">&#62;</option>
+						<option value = "<=">&#60;=</option>
+						<option value = ">=">&#62;=</option>
+						<option value = "==">=</option>
+
+					</select>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class = "row">
+			
+			<div class = "col-md-2">
+
+				<div class = "form-group">
+					
+					<label>Activos</label>
+
+					<input type = "checkbox" v-model = "filtroActivos" v-on:click = "filtroInactivos = 0">
+
+				</div>
+
+			</div>
+
+			<div class = "col-md-2">
+				
+				<div class = "form-group">
+					
+					<label>Inactivos</label>
+
+					<input type = "checkbox" v-model = "filtroInactivos" v-on:click = "filtroActivos = 0">
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class = "row">
+
+			<div class = "col-md-12"> 
+				
+				<table class = "table">
+					
+					<tr>
+						
+						<th>Empresa</th>
+						<th>Area</th>
+						<th>Experiencia</th>
+						<th>Estado</th>
+
+					</tr>
+
+					<tr v-for = "empresa in formacion" v-if = "filtrarEmpresas(empresa)">
+						
+						<td>{{ empresa.empresa }}</td>
+						<td>{{ empresa.area }}</td>
+						<td>{{ empresa.experiencia }}</td>
+						<td>{{ empresa.estado }}</td>
+
+					</tr>
+
+				</table>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<script src = "js/app.js"></script>
+	
+</body>
+
+</html>

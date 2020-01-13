@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<meta charset = "utf-8">
+	<title>Vue</title>
+
+	<link href = "css/bootstrap.css" rel = "stylesheet">
+
+	<script src = "js/vue.js"></script>
+	<script src = "js/vue-router.js"></script>
+
+</head>
+
+<body>
+
+	<div class = "container" id = "app">
+
+		<div class = "row mt-2 mb-2">
+
+			<h1>Vue</h1>
+
+		</div>
+
+		<router-link to = "/">Inicio</router-link>
+		<router-link to = "/acerca-de">Acerca de</router-link>
+		<router-link to = "/lista-personas">Lista Personas</router-link>
+		<router-link to = "/lista-frameworks">Lista Frameworks</router-link>
+		<router-link to = "/contacto">Contacto</router-link>
+
+		<router-view></router-view>
+
+		<noticias v-bind:mensaje = "noticia"></noticias>
+
+		<imagen-post v-bind:propurl = "imagenPixabay"></imagen-post>
+
+		<div class = "row mt-5 mb-5">
+
+			<div class = "col-md-3">
+
+				<input type = "text" v-model = "filtroExperiencia" class = "form-control">
+
+			</div>
+
+			<div class = "col-md-6">
+
+				<button class = "btn btn-primary" v-on:click = "filtrarEmpresas">Experiencia igual o menor a</button>
+
+			</div>
+
+		</div>
+
+		<ul>
+			
+			<li v-for = "(campo, index) in formacion">
+				
+				<strong>Id:</strong> {{ index }} <strong>Empresa:</strong> {{ campo.empresa }} <strong>Experiencia:</strong> {{ campo.experiencia }} años
+
+				<span v-if = "index == formacion.length - 1">Último</span>
+
+			</li>
+
+		</ul>
+
+		<div class = "row mt-5">
+			
+			<div class = "col-md-6">
+
+				<button class = "btn btn-primary" data-toggle = "modal" data-target = "#modal">Modal</button>
+
+			</div>
+
+		</div>
+
+		<modal>
+
+			<div slot = "titulo">Modal</div>
+
+			<p>Este es el contenido del cuerpo</p>
+
+			<div slot = "pie">
+				
+				<button class = "btn btn-secondary" data-dismiss = "modal">Cerrar</button>				
+
+				<button class = "btn btn-success">Enviar</button>
+
+			</div>
+
+		</modal>
+
+	</div>
+
+	<script src = "js/jquery.js"></script>
+	<script src = "js/bootstrap.js"></script>
+
+	<script src = "js/components/noticias.js"></script>
+	<script src = "js/components/slot.js"></script>
+	<script src = "js/components/listaPersonas.js"></script>
+	<script src = "js/components/listaFrameworks.js"></script>
+	<script src = "js/components/listaAlertas.js"></script>
+	<script src = "js/components/imagenPost.js"></script>
+	<script src = "js/app.js"></script>
+	
+</body>
+
+</html>
